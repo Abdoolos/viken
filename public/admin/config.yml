@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "settings"
+    label: "Innstillinger"
+    files:
+      - file: "content/settings.json"
+        label: "Nettside informasjon"
+        name: "site_info"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
+          - { label: "About", name: "about", widget: "text" }
+          - label: "Prices"
+            name: "prices"
+            widget: "object"
+            fields:
+              - { label: "Hair", name: "hair", widget: "number" }
+              - { label: "Beard", name: "beard", widget: "number" }
+              - { label: "Hair + Beard", name: "hairBeard", widget: "number" }
+              - { label: "Threading", name: "threading", widget: "number" }
+              - { label: "Wax", name: "wax", widget: "number" }

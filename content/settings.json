@@ -1,0 +1,15 @@
+{
+  "siteTitle": "Viken Fade",
+  "phone": "+47 998 58 236",
+  "email": "ah2xx@hotmail.com",
+  "heroTitle": "Velkommen til Viken Fade",
+  "heroSubtitle": "Klassiske og moderne fades i hjertet av Viken",
+  "about": "Profesjonell herrefrisør. Drop-in og timebestilling.",
+  "prices": {
+    "hair": 300,
+    "beard": 250,
+    "hairBeard": 400,
+    "threading": 100,
+    "wax": 100
+  }
+}
