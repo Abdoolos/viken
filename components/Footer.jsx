@@ -170,7 +170,7 @@ export default function Footer() {
                 }}
                 className="footer-link"
               >
-                📅 Bestill Time
+                📞 Ring Oss
               </a>
               <a
                 href="#prices"

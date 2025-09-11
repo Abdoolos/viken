@@ -161,10 +161,10 @@ export default function Hero() {
             }} className="card">
               <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🕐</div>
               <h3 style={{ fontSize: '1.1rem', margin: '0 0 0.5rem', color: 'var(--cl-dark-1)' }}>
-                Fleksible Timer
+                Drop-in Velkommen
               </h3>
               <p style={{ fontSize: '0.9rem', color: 'var(--cl-text-muted)', margin: 0 }}>
-                Drop-in og timebestilling
+                Ingen timebestilling nødvendig
               </p>
             </div>
             

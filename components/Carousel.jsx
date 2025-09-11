@@ -1,77 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Carousel({ images = [] }) {
-  const scrollerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el || images.length <= 1) return;
+    if (images.length <= 1) return;
     
     const intervalId = setInterval(() => {
-      if (!isDragging) {
-        setCurrentIndex(prev => {
-          const newIndex = (prev + 1) % images.length;
-          el.scrollTo({
-            left: newIndex * el.clientWidth,
-            behavior: "smooth"
-          });
-          return newIndex;
-        });
-      }
+      setCurrentIndex(prev => (prev + 1) % images.length);
     }, 4000);
 
     return () => clearInterval(intervalId);
-  }, [images, isDragging]);
+  }, [images.length]);
 
   const goToSlide = (index) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    
     setCurrentIndex(index);
-    el.scrollTo({
-      left: index * el.clientWidth,
-      behavior: "smooth"
-    });
-  };
-
-  // Touch and mouse drag handlers
-  const handleStart = (e) => {
-    setIsDragging(true);
-    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-    setStartX(clientX - scrollerRef.current.offsetLeft);
-    setScrollLeft(scrollerRef.current.scrollLeft);
-  };
-
-  const handleMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-    const x = clientX - scrollerRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    scrollerRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    
-    // Snap to nearest slide
-    const el = scrollerRef.current;
-    if (!el) return;
-    
-    const slideWidth = el.clientWidth;
-    const newIndex = Math.round(el.scrollLeft / slideWidth);
-    const clampedIndex = Math.max(0, Math.min(newIndex, images.length - 1));
-    
-    setCurrentIndex(clampedIndex);
-    el.scrollTo({
-      left: clampedIndex * slideWidth,
-      behavior: "smooth"
-    });
   };
 
   if (images.length === 0) {
@@ -99,41 +43,34 @@ export default function Carousel({ images = [] }) {
         overflow: "hidden",
         boxShadow: "var(--shadow-xl)",
         background: "white",
-        border: "2px solid var(--cl-border)",
-        cursor: isDragging ? "grabbing" : "grab"
+        border: "2px solid var(--cl-border)"
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Main carousel container */}
-      <div 
-        ref={scrollerRef} 
-        style={{
-          display: "flex",
-          scrollSnapType: "x mandatory",
-          overflowX: "hidden",
-          width: "100%",
-          height: "450px",
-          scrollBehavior: isDragging ? "auto" : "smooth"
-        }}
-        onMouseDown={handleStart}
-        onMouseMove={handleMove}
-        onMouseUp={handleEnd}
-        onMouseLeave={handleEnd}
-        onTouchStart={handleStart}
-        onTouchMove={handleMove}
-        onTouchEnd={handleEnd}
-      >
+      <div style={{
+        position: "relative",
+        width: "100%",
+        height: "450px",
+        overflow: "hidden"
+      }}>
         {images.map((src, idx) => (
           <div 
             key={idx} 
             style={{
-              minWidth: "100%", 
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%", 
               height: "100%", 
-              position: "relative", 
-              scrollSnapAlign: "start",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "var(--cl-light-1)"
+              background: "var(--cl-light-1)",
+              opacity: idx === currentIndex ? 1 : 0,
+              transition: "opacity 0.5s ease-in-out",
+              zIndex: idx === currentIndex ? 2 : 1
             }}
           >
             <img 
@@ -149,23 +86,85 @@ export default function Carousel({ images = [] }) {
             />
             
             {/* Image overlay with number */}
-            <div style={{
-              position: "absolute",
-              top: "1rem",
-              right: "1rem",
-              background: "rgba(0, 0, 0, 0.7)",
-              color: "white",
-              padding: "0.5rem 1rem",
-              borderRadius: "var(--radius-lg)",
-              fontSize: "0.875rem",
-              fontWeight: "600"
-            }}>
-              {idx + 1} / {images.length}
-            </div>
+            {idx === currentIndex && (
+              <div style={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                background: "rgba(0, 0, 0, 0.7)",
+                color: "white",
+                padding: "0.5rem 1rem",
+                borderRadius: "var(--radius-lg)",
+                fontSize: "0.875rem",
+                fontWeight: "600"
+              }}>
+                {idx + 1} / {images.length}
+              </div>
+            )}
           </div>
         ))}
       </div>
 
+      {/* Navigation arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={() => setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1)}
+            style={{
+              position: "absolute",
+              left: "1rem",
+              top: "50%",
+              transform: `translateY(-50%) ${isHovered ? 'translateX(0)' : 'translateX(-70px)'}`,
+              background: "rgba(255, 255, 255, 0.9)",
+              border: "2px solid var(--cl-border)",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontSize: "1.2rem",
+              color: "var(--cl-primary)",
+              transition: "all 0.3s ease",
+              boxShadow: "var(--shadow-md)",
+              zIndex: 10,
+              opacity: isHovered ? 1 : 0,
+              pointerEvents: isHovered ? "auto" : "none"
+            }}
+          >
+            ←
+          </button>
+
+          <button
+            onClick={() => setCurrentIndex(prev => (prev + 1) % images.length)}
+            style={{
+              position: "absolute",
+              right: "1rem",
+              top: "50%",
+              transform: `translateY(-50%) ${isHovered ? 'translateX(0)' : 'translateX(70px)'}`,
+              background: "rgba(255, 255, 255, 0.9)",
+              border: "2px solid var(--cl-border)",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              fontSize: "1.2rem",
+              color: "var(--cl-primary)",
+              transition: "all 0.3s ease",
+              boxShadow: "var(--shadow-md)",
+              zIndex: 10,
+              opacity: isHovered ? 1 : 0,
+              pointerEvents: isHovered ? "auto" : "none"
+            }}
+          >
+            →
+          </button>
+        </>
+      )}
 
       {/* Dots indicator */}
       {images.length > 1 && (
@@ -179,7 +178,8 @@ export default function Carousel({ images = [] }) {
           background: "rgba(0, 0, 0, 0.5)",
           padding: "0.75rem 1rem",
           borderRadius: "var(--radius-xl)",
-          backdropFilter: "blur(10px)"
+          backdropFilter: "blur(10px)",
+          zIndex: 10
         }}>
           {images.map((_, idx) => (
             <button
@@ -201,21 +201,6 @@ export default function Carousel({ images = [] }) {
           ))}
         </div>
       )}
-
-
-      {/* CSS for hover effects */}
-      <style jsx>{`
-        .carousel-btn:hover {
-          background: white !important;
-          transform: translateY(-50%) scale(1.1) !important;
-          box-shadow: var(--shadow-lg) !important;
-          border-color: var(--cl-primary) !important;
-        }
-        
-        .carousel-btn:active {
-          transform: translateY(-50%) scale(0.95) !important;
-        }
-      `}</style>
     </div>
   );
 }

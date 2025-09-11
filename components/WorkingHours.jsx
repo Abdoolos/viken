@@ -199,14 +199,14 @@ export default function WorkingHours() {
               marginBottom: '1rem',
               color: 'var(--cl-dark-1)'
             }}>
-              📞 Bestill time eller kom innom!
+              📞 Kom innom når det passer deg!
             </h3>
             <p style={{
               fontSize: '1rem',
               marginBottom: '1.5rem',
               color: 'var(--cl-text-muted)'
             }}>
-              Ring oss eller kom innom for drop-in service
+              Drop-in service - ingen timebestilling nødvendig
             </p>
             <a
               href="tel:+4799858236"

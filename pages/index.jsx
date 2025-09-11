@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Carousel from "../components/Carousel";
 import WorkingHours from "../components/WorkingHours";
+import PaymentInfo from "../components/PaymentInfo";
 import PriceList from "../components/PriceList";
 import Footer from "../components/Footer";
 
@@ -34,6 +35,7 @@ export default function Home({ gallery }){
         </div>
       </section>
       <WorkingHours/>
+      <PaymentInfo/>
       <PriceList/>
       <Footer/>
     </main>
