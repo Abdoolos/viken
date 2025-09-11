@@ -215,7 +215,7 @@ export default function WorkingHours() {
               Drop-in service - ingen timebestilling nødvendig
             </p>
             <a
-              href="tel:+4799858236"
+                    href="tel:+4745543838"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -233,7 +233,7 @@ export default function WorkingHours() {
               className="btn"
             >
               <span style={{ fontSize: '1.2rem' }}>📱</span>
-              Ring +47 998 58 236
+              Ring +47 455 43 838
             </a>
           </div>
         </div>

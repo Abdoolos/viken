@@ -190,7 +190,7 @@ export default function PriceList() {
 
                 {/* Book Button */}
                 <a
-                  href="tel:+4799858236"
+                            href="tel:+4745543838"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -226,14 +226,6 @@ export default function PriceList() {
             textAlign: 'center',
             boxShadow: 'var(--shadow-lg)'
           }}>
-            <h3 style={{
-              fontSize: '1.5rem',
-              fontWeight: '700',
-              marginBottom: '1rem',
-              color: 'var(--cl-dark-1)'
-            }}>
-              💡 Nyttig å vite
-            </h3>
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -247,36 +239,10 @@ export default function PriceList() {
                   marginBottom: '0.5rem',
                   fontWeight: '600'
                 }}>
-                  🕐 Timebestilling
-                </h4>
-                <p style={{ color: 'var(--cl-text-muted)', fontSize: '0.9rem', margin: 0 }}>
-                  Ring oss for å bestille time eller kom innom for drop-in service
-                </p>
-              </div>
-              <div>
-                <h4 style={{ 
-                  color: 'var(--cl-secondary)', 
-                  fontSize: '1.1rem', 
-                  marginBottom: '0.5rem',
-                  fontWeight: '600'
-                }}>
                   💳 Betaling
                 </h4>
                 <p style={{ color: 'var(--cl-text-muted)', fontSize: '0.9rem', margin: 0 }}>
-                  Vi tar imot kontant, kort og mobilbetaling
-                </p>
-              </div>
-              <div>
-                <h4 style={{ 
-                  color: 'var(--cl-secondary)', 
-                  fontSize: '1.1rem', 
-                  marginBottom: '0.5rem',
-                  fontWeight: '600'
-                }}>
-                  ⭐ Kvalitet
-                </h4>
-                <p style={{ color: 'var(--cl-text-muted)', fontSize: '0.9rem', margin: 0 }}>
-                  100% fornøydgaranti - ikke fornøyd? Da betaler du ikke!
+                  kort
                 </p>
               </div>
             </div>

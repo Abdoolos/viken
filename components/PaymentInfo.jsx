@@ -40,8 +40,7 @@ export default function PaymentInfo() {
             backdropFilter: "blur(10px)",
             borderRadius: "var(--radius-xl)",
             padding: "2rem",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            marginBottom: "2rem"
+            border: "1px solid rgba(255, 255, 255, 0.2)"
           }}>
             <div style={{
               fontSize: "3rem",
@@ -55,60 +54,8 @@ export default function PaymentInfo() {
               marginBottom: "1rem",
               color: "white"
             }}>
-              Kun Kortbetaling
+              Alle kort
             </h3>
-            <p style={{
-              fontSize: "1.1rem",
-              lineHeight: "1.6",
-              color: "rgba(255, 255, 255, 0.9)",
-              marginBottom: "1.5rem"
-            }}>
-              Vi aksepterer kun betaling med kort. Kontanter ikke akseptert.
-            </p>
-          </div>
-          
-          {/* Additional Info */}
-          <div style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            borderRadius: "var(--radius-lg)",
-            padding: "1.5rem",
-            border: "1px solid rgba(255, 255, 255, 0.15)"
-          }}>
-            <h4 style={{
-              fontSize: "1.2rem",
-              fontWeight: "600",
-              marginBottom: "0.75rem",
-              color: "white"
-            }}>
-              ℹ️ Viktig informasjon
-            </h4>
-            <ul style={{
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              textAlign: "left"
-            }}>
-              <li style={{
-                padding: "0.5rem 0",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-                color: "rgba(255, 255, 255, 0.9)"
-              }}>
-                ✓ Alle kort med chip og PIN aksepteres
-              </li>
-              <li style={{
-                padding: "0.5rem 0",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-                color: "rgba(255, 255, 255, 0.9)"
-              }}>
-                ✓ Kontaktløs betaling under 500kr
-              </li>
-              <li style={{
-                padding: "0.5rem 0",
-                color: "rgba(255, 255, 255, 0.9)"
-              }}>
-                ✓ Vipps betaling tilgjengelig
-              </li>
-            </ul>
           </div>
         </div>
       </div>

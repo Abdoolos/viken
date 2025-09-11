@@ -87,7 +87,7 @@ export default function Hero() {
             marginBottom: '3rem'
           }} className="animate-fade-in-up">
             <a 
-              href="tel:+4799858236" 
+              href="tel:+4745543838"
               className="btn btn-primary"
               style={{
                 background: 'linear-gradient(135deg, var(--cl-primary), var(--cl-accent))',
