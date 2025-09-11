@@ -10,13 +10,41 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
+      // Initialize Netlify Identity
       if (window.netlifyIdentity) {
+        // Initialize the widget
+        window.netlifyIdentity.init();
+        
+        // Handle authentication events
         window.netlifyIdentity.on("init", user => {
           if (!user) {
             window.netlifyIdentity.on("login", () => {
               document.location.href = "/admin/";
             });
           }
+        });
+        
+        // Handle logout
+        window.netlifyIdentity.on("logout", () => {
+          document.location.href = "/";
+        });
+        
+        // Handle password recovery and invite acceptance
+        window.netlifyIdentity.on("ready", () => {
+          // Check if there's a recovery token or invite token in the URL
+          const hash = window.location.hash;
+          if (hash) {
+            if (hash.includes('recovery_token') || hash.includes('invite_token') || hash.includes('confirmation_token')) {
+              // Let the widget handle the token
+              console.log('Token detected in URL, letting Netlify Identity handle it');
+            }
+          }
+        });
+        
+        // Handle successful password recovery
+        window.netlifyIdentity.on("password_recovery", () => {
+          console.log('Password recovery successful');
+          document.location.href = "/admin/";
         });
       }
     </script>
