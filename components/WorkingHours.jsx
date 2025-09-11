@@ -1,12 +1,16 @@
+import settings from "../content/settings.json";
+
 export default function WorkingHours() {
+  const workingHours = settings.workingHours;
+  
   const workingDays = [
-    { day: 'Mandag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Tirsdag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Onsdag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Torsdag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Fredag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Lørdag', hours: '10:00 - 19:00', isOpen: true },
-    { day: 'Søndag', hours: 'Stengt', isOpen: false }
+    { day: 'Mandag', hours: workingHours.regular.monday.replace('-', ' - '), isOpen: workingHours.regular.monday !== 'Stengt' },
+    { day: 'Tirsdag', hours: workingHours.regular.tuesday.replace('-', ' - '), isOpen: workingHours.regular.tuesday !== 'Stengt' },
+    { day: 'Onsdag', hours: workingHours.regular.wednesday.replace('-', ' - '), isOpen: workingHours.regular.wednesday !== 'Stengt' },
+    { day: 'Torsdag', hours: workingHours.regular.thursday.replace('-', ' - '), isOpen: workingHours.regular.thursday !== 'Stengt' },
+    { day: 'Fredag', hours: workingHours.regular.friday.replace('-', ' - '), isOpen: workingHours.regular.friday !== 'Stengt' },
+    { day: 'Lørdag', hours: workingHours.regular.saturday.replace('-', ' - '), isOpen: workingHours.regular.saturday !== 'Stengt' },
+    { day: 'Søndag', hours: workingHours.regular.sunday, isOpen: workingHours.regular.sunday !== 'Stengt' }
   ];
 
   const getCurrentDay = () => {
@@ -117,7 +121,7 @@ export default function WorkingHours() {
                   background: schedule.day === currentDay 
                     ? 'linear-gradient(135deg, var(--cl-primary), var(--cl-accent))' 
                     : 'white',
-                  color: schedule.day === currentDay ? 'white' : 'var(--cl-text)',
+                  color: schedule.day === currentDay ? 'white' : 'var(--cl-dark-1)',
                   padding: '1.5rem',
                   borderRadius: 'var(--radius-lg)',
                   border: schedule.day === currentDay 
@@ -152,7 +156,8 @@ export default function WorkingHours() {
                   <div style={{
                     fontWeight: '600',
                     fontSize: '1rem',
-                    opacity: schedule.isOpen ? 1 : 0.7
+                    opacity: schedule.isOpen ? 1 : 0.8,
+                    color: schedule.day === currentDay ? 'white' : 'var(--cl-dark-1)'
                   }}>
                     {schedule.hours}
                   </div>
@@ -161,8 +166,9 @@ export default function WorkingHours() {
                   <div style={{
                     fontSize: '0.875rem',
                     marginTop: '0.5rem',
-                    opacity: 0.7,
-                    fontStyle: 'italic'
+                    opacity: 0.8,
+                    fontStyle: 'italic',
+                    color: schedule.day === currentDay ? 'white' : 'var(--cl-text-muted)'
                   }}>
                     Hviledag - Vi sees i morgen! 😊
                   </div>

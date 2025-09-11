@@ -7,24 +7,91 @@ public_folder: "/uploads"
 
 collections:
   - name: "settings"
-    label: "Innstillinger"
+    label: "📋 Innstillinger"
     files:
       - file: "content/settings.json"
-        label: "Nettside informasjon"
+        label: "🏪 Nettside Informasjon"
         name: "site_info"
         fields:
-          - { label: "Site Title", name: "siteTitle", widget: "string" }
-          - { label: "Phone", name: "phone", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Hero Title", name: "heroTitle", widget: "string" }
-          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "string" }
-          - { label: "About", name: "about", widget: "text" }
-          - label: "Prices"
+          - { label: "📱 Site Title", name: "siteTitle", widget: "string" }
+          - { label: "☎️ Phone", name: "phone", widget: "string" }
+          - { label: "📧 Email", name: "email", widget: "string" }
+          - { label: "🎯 Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "📝 Hero Subtitle", name: "heroSubtitle", widget: "string" }
+          - { label: "ℹ️ About", name: "about", widget: "text" }
+          
+          - label: "📢 Announcement (Kunngjøring)"
+            name: "announcement"
+            widget: "object"
+            fields:
+              - { label: "Aktiver", name: "enabled", widget: "boolean", default: true }
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["info", "travel", "closed", "special"]
+                default: "info"
+              - { label: "Tittel", name: "title", widget: "string", default: "🪧 ÅPENT" }
+              - { label: "Melding", name: "message", widget: "text", default: "Velkommen!" }
+              - { label: "Start Dato (valgfri)", name: "startDate", widget: "datetime", required: false }
+              - { label: "Slutt Dato (valgfri)", name: "endDate", widget: "datetime", required: false }
+              - { label: "Vis til Dato (valgfri)", name: "showUntil", widget: "datetime", required: false }
+          
+          - label: "🕒 Åpningstider"
+            name: "workingHours"
+            widget: "object"
+            fields:
+              - label: "Normale timer"
+                name: "regular"
+                widget: "object"
+                fields:
+                  - { label: "Mandag", name: "monday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Tirsdag", name: "tuesday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Onsdag", name: "wednesday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Torsdag", name: "thursday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Fredag", name: "friday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Lørdag", name: "saturday", widget: "string", default: "10:00-19:00" }
+                  - { label: "Søndag", name: "sunday", widget: "string", default: "Stengt" }
+              
+              - label: "🎄 Helligdager og Ferier"
+                name: "holidays"
+                widget: "list"
+                fields:
+                  - { label: "Navn", name: "name", widget: "string" }
+                  - { label: "Dato", name: "date", widget: "date" }
+                  - { label: "Åpningstider (eller 'Stengt')", name: "hours", widget: "string", default: "Stengt" }
+                  - { label: "Beskrivelse", name: "description", widget: "text", required: false }
+              
+              - label: "⚡ Spesielle dager"
+                name: "specialDays"
+                widget: "list"
+                fields:
+                  - { label: "Navn", name: "name", widget: "string" }
+                  - { label: "Fra dato", name: "startDate", widget: "date" }
+                  - { label: "Til dato", name: "endDate", widget: "date" }
+                  - { label: "Åpningstider", name: "hours", widget: "string" }
+                  - { label: "Melding", name: "message", widget: "text", required: false }
+          
+          - label: "🖼️ Galleri Innstillinger"
+            name: "gallery"
+            widget: "object"
+            fields:
+              - { label: "Vis galleri", name: "enabled", widget: "boolean", default: true }
+              - { label: "Tittel", name: "title", widget: "string", default: "🖼️ Galleri" }
+              - { label: "Beskrivelse", name: "description", widget: "text", default: "Se våre nyeste arbeider" }
+              - label: "Bilder å vise"
+                name: "imagesToShow"
+                widget: "list"
+                fields:
+                  - { label: "Filnavn", name: "filename", widget: "string" }
+                  - { label: "Alt tekst", name: "alt", widget: "string" }
+                  - { label: "Beskrivelse", name: "description", widget: "text", required: false }
+          
+          - label: "💰 Priser"
             name: "prices"
             widget: "object"
             fields:
-              - { label: "Hair", name: "hair", widget: "number" }
-              - { label: "Beard", name: "beard", widget: "number" }
-              - { label: "Hair + Beard", name: "hairBeard", widget: "number" }
-              - { label: "Threading", name: "threading", widget: "number" }
-              - { label: "Wax", name: "wax", widget: "number" }
+              - { label: "💇‍♂️ Hårklipp", name: "hair", widget: "number" }
+              - { label: "🧔 Skjegg", name: "beard", widget: "number" }
+              - { label: "💇‍♂️➕🧔 Hår + Skjegg", name: "hairBeard", widget: "number" }
+              - { label: "🧵 Threading", name: "threading", widget: "number" }
+              - { label: "🕯️ Voks", name: "wax", widget: "number" }
