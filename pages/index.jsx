@@ -10,6 +10,7 @@ import WorkingHours from "../components/WorkingHours";
 import PaymentInfo from "../components/PaymentInfo";
 import PriceList from "../components/PriceList";
 import Footer from "../components/Footer";
+import ClosedOverlay from "../components/ClosedOverlay";
 
 export default function Home({ gallery }){
   return (
@@ -56,6 +57,7 @@ export default function Home({ gallery }){
       <PaymentInfo/>
       <PriceList/>
       <Footer/>
+      <ClosedOverlay/>
     </main>
   );
 }
