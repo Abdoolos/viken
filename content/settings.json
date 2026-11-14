@@ -7,21 +7,21 @@
   "about": "Profesjonell herrefrisør. Drop-in",
   "announcement": {
     "enabled": true,
-    "type": "info",
-    "title": "🪧 ÅPENT",
-    "message": "Velkommen!",
+    "type": "special",
+    "title": "Vi er tilbake!",
+    "message": "Åpent mandag–lørdag kl. 10:00–19:30",
     "startDate": "",
     "endDate": "",
     "showUntil": ""
   },
   "workingHours": {
     "regular": {
-      "monday": "10:00-19:00",
-      "tuesday": "10:00-19:00",
-      "wednesday": "10:00-19:00",
-      "thursday": "10:00-19:00",
-      "friday": "10:00-19:00",
-      "saturday": "10:00-19:00",
+      "monday": "10:00-19:30",
+      "tuesday": "10:00-19:30",
+      "wednesday": "10:00-19:30",
+      "thursday": "10:00-19:30",
+      "friday": "10:00-19:30",
+      "saturday": "10:00-19:30",
       "sunday": "Stengt"
     },
     "holidays": [

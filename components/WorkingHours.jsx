@@ -13,19 +13,26 @@ export default function WorkingHours() {
     { day: 'Søndag', hours: workingHours.regular.sunday, isOpen: workingHours.regular.sunday !== 'Stengt' }
   ];
 
+  const getOsloNow = () => new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Oslo" }));
+
   const getCurrentDay = () => {
     const days = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-    return days[new Date().getDay()];
+    return days[getOsloNow().getDay()];
   };
 
   const isCurrentlyOpen = () => {
-    const now = new Date();
-    const currentHour = now.getHours();
+    const now = getOsloNow();
     const currentDay = getCurrentDay();
     const todaySchedule = workingDays.find(d => d.day === currentDay);
     
     if (!todaySchedule || !todaySchedule.isOpen) return false;
-    return currentHour >= 10 && currentHour < 19;
+    const match = todaySchedule.hours.match(/(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
+    if (!match) return false;
+    const [, oh, om, ch, cm] = match.map(Number);
+    const open = oh * 60 + om;
+    const close = ch * 60 + cm;
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    return currentMinutes >= open && currentMinutes < close;
   };
 
   const currentDay = getCurrentDay();
