@@ -130,7 +130,7 @@ export default function SmartStatus() {
         return {
           isOpen: false,
           message: "Stengt nå",
-          description: `Åpner ${formatTime(open)} i morgen`,
+          description: `Åpner ${formatTime(open)} ${minutesUntilOpen > 0 ? "i dag" : "i morgen"}`,
           type: 'closed'
         };
       }
