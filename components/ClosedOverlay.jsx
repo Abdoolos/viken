@@ -24,16 +24,26 @@ export default function ClosedOverlay() {
       backdropFilter: "blur(6px)",
       WebkitBackdropFilter: "blur(6px)"
     }}>
-      <h1 style={{
-        margin: 0,
-        textAlign: "center",
-        fontSize: "clamp(2rem, 6vw, 4rem)",
-        fontWeight: 800,
-        lineHeight: 1.2,
-        color: "var(--cl-dark-1)"
-      }}>
-        Stengt for reise til 15. november
-      </h1>
+      <div style={{ textAlign: "center", color: "var(--cl-dark-1)" }}>
+        <h1 style={{
+          margin: 0,
+          fontSize: "clamp(2rem, 6vw, 4rem)",
+          fontWeight: 800,
+          lineHeight: 1.2
+        }}>
+          Stengt for reise til 15. november
+        </h1>
+        <p style={{
+          margin: "1.5rem 0 0",
+          fontSize: "clamp(1.25rem, 3.5vw, 2rem)",
+          fontWeight: 700,
+          lineHeight: 1.4
+        }}>
+          Vi er tilbake mandag 16. november
+          <br />
+          Åpent mandag–lørdag kl. 10:00–19:30
+        </p>
+      </div>
     </div>
   );
 }

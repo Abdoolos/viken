@@ -25,7 +25,12 @@ export default function WorkingHours() {
     const todaySchedule = workingDays.find(d => d.day === currentDay);
     
     if (!todaySchedule || !todaySchedule.isOpen) return false;
-    return currentHour >= 10 && currentHour < 19;
+    const [open, close] = todaySchedule.hours.split(' - ').map(t => {
+      const [h, m] = t.split(':').map(Number);
+      return h * 60 + m;
+    });
+    const currentMinutes = currentHour * 60 + now.getMinutes();
+    return currentMinutes >= open && currentMinutes < close;
   };
 
   const currentDay = getCurrentDay();
